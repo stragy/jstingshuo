@@ -1,0 +1,166 @@
+{
+  "project": {
+    "name": "慧听说提分应用（移动端）",
+    "path": "d:\\京师讯飞\\产品\\慧听说\\江苏试卷结构分析\\listening-skill-app-mobile",
+    "operation": "create",
+    "deviceType": "mobile",
+    "language": "zh-CN",
+    "dashboardMode": false,
+    "replicationMode": null,
+    "sourceUrl": null,
+    "visualSpecExcerpt": null,
+    "styleDefinitionBrief": "Mobile education app, deep teal primary + warm neutral surfaces, PingFang SC, bottom tab navigation, single-column card layout, touch-friendly targets",
+    "designRead": "Mobile EdTech app / junior-high students / calm data-driven / medium density touch-optimized / avoid desktop sidebar patterns",
+    "designDials": {
+      "layoutVariance": 2,
+      "motionIntensity": 2,
+      "visualDensity": 3
+    },
+    "styleContinuityAnchors": {
+      "colorSystem": {
+        "primaryColorRole": "single deep teal #1B6B5A for primary CTA, progress bars, active tab, and skill indicators",
+        "brandHuePolicy": "free-explore with no secondary hue",
+        "stateColors": "semantic tokens only: success/warning/error/info"
+      },
+      "shapeSystem": "restrained radius: sm=4px, md=8px, lg=12px, xl=16px, full=9999px",
+      "typographySystem": "PingFang SC primary stack; mobile-optimized sizes (14px body, 18px headings)",
+      "spacingSystem": "4px base grid for mobile, 12/16/20/24/32px scale",
+      "componentLanguage": "clean bordered cards, minimal shadow, touch-friendly 44px min tap targets",
+      "surfaceAndDepth": "border-first static surfaces",
+      "imageryAndIconography": "inline SVG icons, data visualization over photography",
+      "interactionTone": "subtle micro-feedback, touch-optimized"
+    },
+    "sharedProjectShellContract": {
+      "navigationShell": "no sidebar; top bar with page title + notification bell; bottom fixed tab bar with 4 tabs (首页/诊断/练习/考试)",
+      "primaryColorSystem": "single deep teal #1B6B5A",
+      "typographySystem": "PingFang SC, 14px body mobile, 18-24px headings",
+      "radiusScale": "sm=4, md=8, lg=12, xl=16, full=9999",
+      "surfaceDepthModel": "borders for cards; shadow-float for modals only",
+      "ctaStyle": "filled primary buttons with 8px radius, full-width on mobile, 44px min height",
+      "alignmentRules": "single column, 16px horizontal padding, 12-16px vertical gap"
+    },
+    "generationTree": {
+      "root": {
+        "nodeId": "gen-project-shell",
+        "kind": "project-shell",
+        "pageIds": ["page-student-home", "page-skill-diagnosis", "page-personalized-practice", "page-exam-simulation"],
+        "output": "partials/project-shell.html",
+        "sharedRegions": ["topbar", "bottomtab"],
+        "privateRegions": ["pageTitle", "mainContent"],
+        "mutableSlots": ["activeTabKey", "pageTitle"],
+        "status": "planned",
+        "children": []
+      }
+    }
+  },
+  "designSource": {
+    "operatingMode": "free-explore",
+    "libraryIdentity": null,
+    "brandCSSPath": "colors_and_type.css",
+    "styleConstraints": {
+      "radiusMax": 16,
+      "staticShadowAlphaMax": 0.05
+    }
+  },
+  "pages": [
+    {
+      "nodeId": "page-student-home",
+      "title": "学生首页",
+      "htmlSrc": "pages/student-home.html",
+      "pageIndex": 1,
+      "pageType": "information-dense",
+      "visualNorthStar": "Mobile dashboard with compact progress ring + stats grid, AI recommendations as swipeable cards, and radar mini-chart, all in single-column scrollable layout",
+      "compositionPattern": "single-column-scroll",
+      "continuityAnchors": {
+        "header": "top bar with page title + bell icon",
+        "cardStyle": "bordered white cards, rounded-xl, 12px padding",
+        "ctaStyle": "filled primary teal full-width buttons",
+        "typography": "PingFang SC, 14px body"
+      },
+      "componentPlan": null,
+      "imagePlan": [],
+      "chartsRequired": true,
+      "miniProgramStyle": false,
+      "soulElement": "Progress ring at top showing exact gap to target, with AI recommended daily tasks immediately below"
+    },
+    {
+      "nodeId": "page-skill-diagnosis",
+      "title": "能力诊断",
+      "htmlSrc": "pages/skill-diagnosis.html",
+      "pageIndex": 2,
+      "pageType": "information-dense",
+      "visualNorthStar": "Mobile skill radar with 5 dimensions as compact centered visualization, followed by vertically stacked dimension detail cards",
+      "compositionPattern": "single-column-scroll",
+      "continuityAnchors": {
+        "header": "top bar with title + bell icon",
+        "cardStyle": "bordered white cards, rounded-xl",
+        "ctaStyle": "filled primary teal full-width buttons",
+        "typography": "PingFang SC, 14px body"
+      },
+      "componentPlan": null,
+      "imagePlan": [],
+      "chartsRequired": true,
+      "miniProgramStyle": false,
+      "soulElement": "Color-coded weakness tags linking to targeted practice"
+    },
+    {
+      "nodeId": "page-personalized-practice",
+      "title": "定向练习",
+      "htmlSrc": "pages/personalized-practice.html",
+      "pageIndex": 3,
+      "pageType": "task-driven",
+      "visualNorthStar": "Filter chips at top + vertically stacked exercise cards with match reason tags, each card full-width with large touch targets",
+      "compositionPattern": "single-column-scroll",
+      "continuityAnchors": {
+        "header": "top bar with title + bell icon",
+        "cardStyle": "bordered white cards, rounded-xl",
+        "ctaStyle": "filled primary teal full-width buttons",
+        "typography": "PingFang SC, 14px body"
+      },
+      "componentPlan": null,
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": false,
+      "soulElement": "Match reason tag on each card explaining why this exercise was recommended"
+    },
+    {
+      "nodeId": "page-exam-simulation",
+      "title": "模拟考试",
+      "htmlSrc": "pages/exam-simulation.html",
+      "pageIndex": 4,
+      "pageType": "task-driven",
+      "visualNorthStar": "Year filter chips + single-column exam cards with status badges, exam flow preview at bottom",
+      "compositionPattern": "single-column-scroll",
+      "continuityAnchors": {
+        "header": "top bar with title + bell icon",
+        "cardStyle": "bordered white cards, rounded-xl",
+        "ctaStyle": "filled primary teal full-width buttons",
+        "typography": "PingFang SC, 14px body"
+      }
+    }
+  ],
+  "assets": [],
+  "wiringPlan": [
+    { "from": "page-student-home", "to": "page-personalized-practice", "domId": "cta-practice-now", "visible": true },
+    { "from": "page-skill-diagnosis", "to": "page-personalized-practice", "domId": "cta-start-practice", "visible": true }
+  ],
+  "hiddenInteractionPlan": [
+    { "from": "page-student-home", "to": "page-student-home", "domId": "tab-home-active", "hideEdge": true },
+    { "from": "page-student-home", "to": "page-skill-diagnosis", "domId": "tab-diagnosis", "hideEdge": true },
+    { "from": "page-student-home", "to": "page-personalized-practice", "domId": "tab-practice", "hideEdge": true },
+    { "from": "page-student-home", "to": "page-exam-simulation", "domId": "tab-exam", "hideEdge": true },
+    { "from": "page-skill-diagnosis", "to": "page-student-home", "domId": "tab-home", "hideEdge": true },
+    { "from": "page-skill-diagnosis", "to": "page-skill-diagnosis", "domId": "tab-diagnosis-active", "hideEdge": true },
+    { "from": "page-skill-diagnosis", "to": "page-personalized-practice", "domId": "tab-practice", "hideEdge": true },
+    { "from": "page-skill-diagnosis", "to": "page-exam-simulation", "domId": "tab-exam", "hideEdge": true },
+    { "from": "page-personalized-practice", "to": "page-student-home", "domId": "tab-home", "hideEdge": true },
+    { "from": "page-personalized-practice", "to": "page-skill-diagnosis", "domId": "tab-diagnosis", "hideEdge": true },
+    { "from": "page-personalized-practice", "to": "page-personalized-practice", "domId": "tab-practice-active", "hideEdge": true },
+    { "from": "page-personalized-practice", "to": "page-exam-simulation", "domId": "tab-exam", "hideEdge": true },
+    { "from": "page-exam-simulation", "to": "page-student-home", "domId": "tab-home", "hideEdge": true },
+    { "from": "page-exam-simulation", "to": "page-skill-diagnosis", "domId": "tab-diagnosis", "hideEdge": true },
+    { "from": "page-exam-simulation", "to": "page-personalized-practice", "domId": "tab-practice", "hideEdge": true },
+    { "from": "page-exam-simulation", "to": "page-exam-simulation", "domId": "tab-exam-active", "hideEdge": true },
+    { "from": "page-personalized-practice", "to": "page-skill-diagnosis", "domId": "back-diagnosis", "hideEdge": true }
+  ]
+}

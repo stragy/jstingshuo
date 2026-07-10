@@ -1,0 +1,178 @@
+{
+  "data": [
+    {
+      "id": "page-student-home",
+      "title": "学生首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1751884800000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/student-home.html",
+        "interactions": [
+          {
+            "domId": "cta-practice-now",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "开始练习"
+          },
+          {
+            "domId": "tab-home-active",
+            "targetPageId": "page-student-home",
+            "transitionLabel": "首页",
+            "hideEdge": true
+          },
+          {
+            "domId": "tab-diagnosis",
+            "targetPageId": "page-skill-diagnosis",
+            "transitionLabel": "诊断"
+          },
+          {
+            "domId": "tab-practice",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "练习"
+          },
+          {
+            "domId": "tab-exam",
+            "targetPageId": "page-exam-simulation",
+            "transitionLabel": "考试"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-skill-diagnosis",
+      "title": "能力诊断",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1751884800000,
+      "canvasData": {
+        "x": 420,
+        "y": 590,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/skill-diagnosis.html",
+        "interactions": [
+          {
+            "domId": "cta-start-practice",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "开始定向练习"
+          },
+          {
+            "domId": "tab-home",
+            "targetPageId": "page-student-home",
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "tab-diagnosis-active",
+            "targetPageId": "page-skill-diagnosis",
+            "transitionLabel": "诊断",
+            "hideEdge": true
+          },
+          {
+            "domId": "tab-practice",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "练习"
+          },
+          {
+            "domId": "tab-exam",
+            "targetPageId": "page-exam-simulation",
+            "transitionLabel": "考试"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-personalized-practice",
+      "title": "定向练习",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1751884800000,
+      "canvasData": {
+        "x": 420,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/personalized-practice.html",
+        "interactions": [
+          {
+            "domId": "back-diagnosis",
+            "targetPageId": "page-skill-diagnosis",
+            "transitionLabel": "查看诊断",
+            "hideEdge": true
+          },
+          {
+            "domId": "tab-home",
+            "targetPageId": "page-student-home",
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "tab-diagnosis",
+            "targetPageId": "page-skill-diagnosis",
+            "transitionLabel": "诊断"
+          },
+          {
+            "domId": "tab-practice-active",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "练习",
+            "hideEdge": true
+          },
+          {
+            "domId": "tab-exam",
+            "targetPageId": "page-exam-simulation",
+            "transitionLabel": "考试"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-exam-simulation",
+      "title": "模拟考试",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1751884800000,
+      "canvasData": {
+        "x": 420,
+        "y": 1180,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/exam-simulation.html",
+        "interactions": [
+          {
+            "domId": "tab-home",
+            "targetPageId": "page-student-home",
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "tab-diagnosis",
+            "targetPageId": "page-skill-diagnosis",
+            "transitionLabel": "诊断"
+          },
+          {
+            "domId": "tab-practice",
+            "targetPageId": "page-personalized-practice",
+            "transitionLabel": "练习"
+          },
+          {
+            "domId": "tab-exam-active",
+            "targetPageId": "page-exam-simulation",
+            "transitionLabel": "考试",
+            "hideEdge": true
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "慧听说提分应用（移动端）",
+    "designLibrary": null
+  }
+}

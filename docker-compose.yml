@@ -1,0 +1,75 @@
+# docker-compose.yml — 慧听说提分应用基础设施
+#
+# 启动基础设施：docker compose up -d postgres minio redis
+# 停止：docker compose down
+# 清除数据：docker compose down -v
+
+services:
+  # ===== PostgreSQL (BFF 数据库) =====
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: hui_listening
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== MinIO (对象存储，兼容 S3) =====
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - miniodata:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== Redis (缓存/会话) =====
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== AI Service (FastAPI) =====
+  ai-svc:
+    build:
+      context: ./services/ai-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      CHIVOX_APP_ID: ${CHIVOX_APP_ID:-}
+      CHIVOX_APP_SECRET: ${CHIVOX_APP_SECRET:-}
+      CHIVOX_ENDPOINT: ${CHIVOX_ENDPOINT:-https://api.chivox.com/cloud/eval/v2}
+    depends_on:
+      - redis
+    profiles:
+      - full
+
+volumes:
+  pgdata:
+  miniodata:
+  redisdata:

@@ -1,0 +1,126 @@
+# docker-compose.prod.yml — 生产环境一键部署
+#
+# 用法：
+#   1. 复制 .env.example → .env.prod，填写真实凭据
+#   2. docker compose -f docker-compose.prod.yml up -d
+#   3. 访问 http://localhost (前端) 或 http://localhost/api (BFF)
+#
+# 架构：Nginx(80) → BFF(3000) → PostgreSQL/MinIO/Redis
+#                      ↓
+#               AI Service(8000) → 驰声 API
+
+services:
+  # ===== PostgreSQL 数据库 =====
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME:-hui_listening}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== MinIO 对象存储 =====
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${OSS_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${OSS_SECRET_KEY:-minioadmin}
+    command: server /data --console-address ":9001"
+    volumes:
+      - miniodata:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== Redis 缓存 =====
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== AI Service (FastAPI) =====
+  ai-svc:
+    build:
+      context: ./services/ai-svc
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      CHIVOX_APP_ID: ${CHIVOX_APP_ID:-}
+      CHIVOX_APP_SECRET: ${CHIVOX_APP_SECRET:-}
+      CHIVOX_ENDPOINT: ${CHIVOX_ENDPOINT:-https://api.chivox.com/cloud/eval/v2}
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # ===== BFF (NestJS) =====
+  bff:
+    build:
+      context: .
+      dockerfile: apps/api-bff/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@postgres:5432/${DB_NAME:-hui_listening}?schema=public
+      OSS_ENDPOINT: http://minio:9000
+      OSS_BUCKET: ${OSS_BUCKET:-audio-uploads}
+      OSS_ACCESS_KEY: ${OSS_ACCESS_KEY:-minioadmin}
+      OSS_SECRET_KEY: ${OSS_SECRET_KEY:-minioadmin}
+      CHIVOX_APP_ID: ${CHIVOX_APP_ID:-}
+      CHIVOX_APP_SECRET: ${CHIVOX_APP_SECRET:-}
+      CHIVOX_ENDPOINT: ${CHIVOX_ENDPOINT:-https://api.chivox.com/cloud/eval/v2}
+      AI_SVC_URL: http://ai-svc:8000/api
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ai-svc:
+        condition: service_started
+
+  # ===== 前端 (Nginx + 静态文件) =====
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - bff
+
+volumes:
+  pgdata:
+  miniodata:
+  redisdata:

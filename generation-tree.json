@@ -1,0 +1,13 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": ["page-student-home", "page-skill-diagnosis", "page-personalized-practice", "page-exam-simulation"],
+    "output": "partials/project-shell.html",
+    "sharedRegions": ["topbar", "bottomtab"],
+    "privateRegions": ["pageTitle", "mainContent"],
+    "mutableSlots": ["activeTabKey", "pageTitle"],
+    "status": "planned",
+    "children": []
+  }
+}

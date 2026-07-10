@@ -1,0 +1,98 @@
+:root {
+  /* ── Brand Hue ── */
+  --color-primary: #1B6B5A;
+  --color-primary-hover: #15524A;
+  --color-primary-light: #E8F5F1;
+  --color-primary-subtle: #F0FAF7;
+  --color-primary-tint-50: #F0FAF7;
+  --color-primary-tint-100: #D5EDE7;
+  --color-primary-tint-200: #A8DBCF;
+  --color-primary-tint-300: #6BC4B0;
+  --color-primary-tint-400: #3A9E89;
+  --color-primary-tint-500: #1B6B5A;
+  --color-primary-tint-600: #15524A;
+  --color-primary-tint-700: #103D37;
+  --color-primary-tint-800: #0B2924;
+  --color-primary-tint-900: #061511;
+
+  /* ── Neutral Scale ── */
+  --color-neutral-50: #F8FAFB;
+  --color-neutral-100: #F1F4F6;
+  --color-neutral-200: #E2E8EC;
+  --color-neutral-300: #CDD5DB;
+  --color-neutral-400: #9EAAB4;
+  --color-neutral-500: #707D89;
+  --color-neutral-600: #545F69;
+  --color-neutral-700: #3D464F;
+  --color-neutral-800: #282F36;
+  --color-neutral-900: #161B20;
+
+  /* ── State Colors ── */
+  --state-success: #2D8F5E;
+  --state-success-light: #ECFDF3;
+  --state-warning: #C97D0A;
+  --state-warning-light: #FFF8E6;
+  --state-error: #C93B3B;
+  --state-error-light: #FEF0F0;
+  --state-info: #2B7DB5;
+  --state-info-light: #EBF5FC;
+
+  /* ── Typography ── */
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+
+  /* ── Radius Scale ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ── Spacing ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* ── Surface ── */
+  --surface-base: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-sunken: #F8FAFB;
+  --surface-overlay: rgba(0, 0, 0, 0.4);
+
+  /* ── Border ── */
+  --border-light: 1px solid var(--color-neutral-200);
+  --border-default: 1px solid var(--color-neutral-300);
+}
