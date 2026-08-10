@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1B6B5A" />
+  <title>慧听说 · 首页</title>
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/base.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+</head>
+<body data-page="home" data-title="慧听说" data-notice="true">
+  <div id="app">
+    <!-- 顶部栏（由 shell.js 渲染） -->
+    <header id="app-topbar" class="app-topbar"></header>
+
+    <!-- 主内容 -->
+    <main id="app-content" class="app-content">
+      <!-- 提分进度环 -->
+      <section class="card progress-ring" id="home-progress" aria-label="提分进度"></section>
+
+      <!-- 统计网格 2x2 -->
+      <section aria-label="学习统计">
+        <h2 class="section-title">学习概览</h2>
+        <div class="stat-grid" id="home-stats"></div>
+      </section>
+
+      <!-- AI 推荐任务 -->
+      <section aria-label="AI 推荐任务">
+        <h2 class="section-title">
+          AI 推荐任务
+          <a class="section-title__link" href="personalized-practice.html">全部</a>
+        </h2>
+        <div class="scroll-x" id="home-tasks"></div>
+      </section>
+
+      <!-- 能力雷达 mini -->
+      <section aria-label="能力雷达">
+        <h2 class="section-title">能力概览</h2>
+        <div class="card radar-mini" id="home-radar"></div>
+      </section>
+
+      <!-- 底部 CTA -->
+      <section class="cta-block">
+        <a id="cta-practice-now" class="btn btn--primary btn--lg btn--block" href="personalized-practice.html">
+          立即练习
+        </a>
+      </section>
+    </main>
+
+    <!-- 底部 Tab 栏（由 shell.js 渲染） -->
+    <nav id="app-tabbar" class="app-tabbar" aria-label="主导航"></nav>
+  </div>
+
+  <script type="module" src="/src/scripts/pages/home.js"></script>
+</body>
+</html>

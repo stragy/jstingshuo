@@ -1,0 +1,55 @@
+// Prisma schema —— 慧听说提分应用 BFF
+// 数据模型同时兼容 SQLite（开发）与 PostgreSQL（生产）
+// 注意：Prisma 的 provider 字段不支持 env()，必须为字面量。
+// 切换到 postgresql 时，通过 scripts/switch-provider.mjs 在构建期改写：
+//   DATABASE_PROVIDER=postgresql pnpm prisma:generate
+// 开发环境默认 sqlite，无需额外操作。
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String           @id @default(cuid())
+  username    String           @unique
+  password    String           // bcrypt 哈希
+  name        String
+  grade       String           // 年级，如「八年级」
+  targetScore Int              @default(85)
+  createdAt   DateTime         @default(now())
+  records     PracticeRecord[]
+  diagnosis   Diagnosis?
+
+  @@map("users")
+}
+
+model PracticeRecord {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // listening/reading/dialogue/vocab
+  title     String
+  score     Int?
+  duration  Int      // 秒
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("practice_records")
+}
+
+model Diagnosis {
+  userId       String   @id
+  listening    Int      @default(0)
+  pronunciation Int     @default(0)
+  vocabulary   Int      @default(0)
+  grammar      Int      @default(0)
+  fluency      Int      @default(0)
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@map("diagnoses")
+}

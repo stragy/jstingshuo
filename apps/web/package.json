@@ -1,0 +1,18 @@
+{
+  "name": "@hui/web",
+  "version": "0.1.0",
+  "description": "慧听说提分应用 - 移动端 Web（Vite MPA）",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
