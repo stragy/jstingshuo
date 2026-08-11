@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1B6B5A" />
+  <title>慧听说 · 模拟考试</title>
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/base.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+</head>
+<body data-page="exam" data-title="模拟考试" data-notice="true">
+  <div id="app">
+    <header id="app-topbar" class="app-topbar"></header>
+
+    <main id="app-content" class="app-content">
+      <!-- 年份筛选 chips -->
+      <section aria-label="年份筛选">
+        <div class="scroll-x" id="exam-filters"></div>
+      </section>
+
+      <!-- 试卷列表 -->
+      <section aria-label="试卷列表">
+        <div id="exam-list" style="display:flex;flex-direction:column;gap:12px"></div>
+      </section>
+
+      <!-- 考试流程预览说明 -->
+      <section aria-label="考试流程预览">
+        <div class="info-block" id="exam-flow"></div>
+      </section>
+    </main>
+
+    <nav id="app-tabbar" class="app-tabbar" aria-label="主导航"></nav>
+  </div>
+
+  <script type="module" src="/src/scripts/pages/exam.js"></script>
+</body>
+</html>

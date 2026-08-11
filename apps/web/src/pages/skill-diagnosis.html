@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1B6B5A" />
+  <title>慧听说 · 能力诊断</title>
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/base.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+</head>
+<body data-page="diagnosis" data-title="能力诊断" data-notice="true">
+  <div id="app">
+    <header id="app-topbar" class="app-topbar"></header>
+
+    <main id="app-content" class="app-content">
+      <!-- 5 维度雷达图 -->
+      <section class="card radar-hero" id="diag-radar" aria-label="能力雷达图"></section>
+
+      <!-- 维度详情卡片 -->
+      <section aria-label="维度详情">
+        <h2 class="section-title">维度详情</h2>
+        <div id="diag-dims" style="display:flex;flex-direction:column;gap:12px"></div>
+      </section>
+
+      <!-- 定向练习 CTA -->
+      <section class="cta-block">
+        <a id="cta-start-practice" class="btn btn--primary btn--lg btn--block" href="personalized-practice.html">
+          开始定向练习
+        </a>
+      </section>
+    </main>
+
+    <nav id="app-tabbar" class="app-tabbar" aria-label="主导航"></nav>
+  </div>
+
+  <script type="module" src="/src/scripts/pages/diagnosis.js"></script>
+</body>
+</html>
